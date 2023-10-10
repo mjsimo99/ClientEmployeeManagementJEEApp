@@ -41,7 +41,9 @@ public class ClientServlet extends HttpServlet {
     }
 
     private void listClients(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
         List<Client> clients = clientService.showList();
+        System.out.println("Number of clients retrieved: " + clients.size());
         request.setAttribute("clients", clients);
         request.getRequestDispatcher("/view/client/clientlist.jsp").forward(request, response);
 
@@ -70,7 +72,7 @@ public class ClientServlet extends HttpServlet {
             if (!clients.isEmpty()) {
                 Client client = clients.get(0);
                 request.setAttribute("client", client);
-                request.getRequestDispatcher("/client-edit.jsp").forward(request, response);
+                request.getRequestDispatcher("/view/client/clientedit.jsp").forward(request, response);
             } else {
                 response.sendRedirect(request.getContextPath() + "/client");
             }

@@ -1,7 +1,6 @@
 package com.majidim.easybankv3.easybankv3.dto;
 
 import java.time.LocalDate;
-import java.util.List;
 
 public final class Client extends Personne{
     private String code ;
