@@ -77,25 +77,7 @@ public class ClientImpl implements IClient {
         }
     }
 
-    @Override
-    public List<Client> SearchByLastName(String prenom) {
-        Connection connection = DatabaseConnection.getConn();
-        try (
-                PreparedStatement preparedStatement = connection.prepareStatement(SEARCH_BY_LASTNAME)) {
-            preparedStatement.setString(1, prenom);
-            ResultSet resultSet = preparedStatement.executeQuery();
-            List<Client> resultList = new ArrayList<>();
-            while (resultSet.next()) {
-                Client client = getClientFromResultSet(resultSet);
-                resultList.add(client);
-            }
-            resultSet.close();
 
-            return resultList;
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-    }
 
     @Override
     public Optional<Client> Update(Client client) {
