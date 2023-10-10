@@ -36,8 +36,19 @@ public class ClientServlet extends HttpServlet {
             case "view" -> viewClient(request, response);
             case "edit" -> editClient(request, response);
             case "delete" -> deleteClient(request, response);
+            case "search" -> searchClients(request, response);
+
             default -> listClients(request, response);
         }
+    }
+    private void searchClients(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String query = request.getParameter("query");
+
+        // Call your service method to perform the search
+        List<Client> searchResults = clientService.SearchByLastName(query);
+
+        request.setAttribute("clients", searchResults);
+        request.getRequestDispatcher("/view/client/clientlist.jsp").forward(request, response);
     }
 
     private void listClients(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -149,4 +160,6 @@ public class ClientServlet extends HttpServlet {
 
         }
     }
+
+
 }

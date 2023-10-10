@@ -11,15 +11,21 @@
 <body>
 <div class="container">
     <h1>List Clients</h1>
+    <form method="GET" action="${pageContext.request.contextPath}/client">
+        <input type="text" name="action" value="search" hidden>
+        <input type="text" name="query" placeholder="Search by Last Name">
+        <button type="submit">Search</button>
+    </form>
+
     <table>
         <thead>
         <tr>
             <th>Client Code</th>
-            <th>Nom</th>
-            <th>Prenom</th>
-            <th>Date de Naissance</th>
-            <th>Tel</th>
-            <th>Adresse</th>
+            <th>Last Name</th>
+            <th>First Name</th>
+            <th>Date of Birth</th>
+            <th>Phone</th>
+            <th>Address</th>
             <th>Action</th>
         </tr>
         </thead>

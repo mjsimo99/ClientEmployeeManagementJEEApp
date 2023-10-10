@@ -11,5 +11,5 @@ public interface IClient extends IPersonne {
     boolean Delete(String code);
     List<Client> Showlist();
     Optional<Client> Update(Client client);
-    Optional<Personne> Add(Personne personne);
+    List<Client> SearchByLastName(String nom);
 }

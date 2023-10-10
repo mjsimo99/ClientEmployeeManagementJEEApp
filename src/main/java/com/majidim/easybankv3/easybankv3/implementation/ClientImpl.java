@@ -20,7 +20,6 @@ public class ClientImpl implements IClient {
     private static final String SEARCH_BY_CODE = "SELECT * FROM Clients WHERE code=?";
     private static final String DELETE_CLIENT = "DELETE FROM Clients WHERE code=?";
     private static final String SHOW_ALL_CLIENTS = "SELECT * FROM Clients";
-    private static final String SEARCH_BY_LASTNAME = "SELECT * FROM Clients WHERE prenom=?";
     private static final String UPDATE_CLIENT = "UPDATE Clients SET nom=?, prenom=?, dateN=?, tel=?, adress=? WHERE code=?";
     private static final String ADD_CLIENT = "INSERT INTO Clients (code, nom, prenom, dateN, tel, adress) VALUES (?, ?, ?, ?, ?, ?)";
 
@@ -99,6 +98,28 @@ public class ClientImpl implements IClient {
     }
 
     @Override
+    public List<Client> SearchByLastName(String lastName) {
+        Connection connection = DatabaseConnection.getConn();
+        String searchQuery = "SELECT * FROM Clients WHERE nom LIKE ?";
+        try (PreparedStatement preparedStatement = connection.prepareStatement(searchQuery)) {
+            preparedStatement.setString(1, "%" + lastName + "%");
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            List<Client> resultList = new ArrayList<>();
+            while (resultSet.next()) {
+                Client client = getClientFromResultSet(resultSet);
+                resultList.add(client);
+            }
+            resultSet.close();
+
+            return resultList;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+
+    @Override
     public Optional<Personne> Add(Personne personne) {
         if (personne instanceof Client client) {
             Connection connection = DatabaseConnection.getConn();
@@ -119,6 +140,7 @@ public class ClientImpl implements IClient {
         }
         return Optional.empty();
     }
+
 
     private Client getClientFromResultSet(ResultSet resultSet) throws SQLException {
         return new Client(
