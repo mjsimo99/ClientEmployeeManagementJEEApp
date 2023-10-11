@@ -21,7 +21,8 @@ public class EmployeImpl implements IEmploye {
     private static final String SEARCH_BY_MATRICULE = "SELECT * FROM Employes WHERE matricule=?";
     private static final String DELETE_EMPLOYE = "DELETE FROM Employes WHERE matricule=?";
     private static final String SHOW_ALL_EMPLOYEES = "SELECT * FROM Employes";
-    private static final String SEARCH_BY_DATE_RECRUTEMENT = "SELECT * FROM Employes WHERE dateRecrutement=?";
+    private static final String SEARCH_BY_EMAIL = "SELECT * FROM Employes WHERE emailAdresse LIKE ?";
+
     private static final String UPDATE_EMPLOYE = "UPDATE Employes SET dateRecrutement=?, emailAdresse=?, nom=?, prenom=?, dateN=?, tel=?, adress=? WHERE matricule=?";
 
     @Override
@@ -97,12 +98,12 @@ public class EmployeImpl implements IEmploye {
     }
 
     @Override
-    public List<Employe> SearchByDateR(LocalDate dateRecrutement) {
+    public List<Employe> SearchByEmail(String emailAdresse) {
         List<Employe> resultList = new ArrayList<>();
         Connection connection = DatabaseConnection.getConn();
         try (
-                PreparedStatement preparedStatement = connection.prepareStatement(SEARCH_BY_DATE_RECRUTEMENT)) {
-            preparedStatement.setObject(1, dateRecrutement);
+                PreparedStatement preparedStatement = connection.prepareStatement(SEARCH_BY_EMAIL)) {
+            preparedStatement.setString(1, emailAdresse);
             ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
                 Employe employe = createEmployeFromResultSet(resultSet);
@@ -135,22 +136,7 @@ public class EmployeImpl implements IEmploye {
         }
     }
 
-    public Employe getEmployeById(String matricule) {
-        Connection connection = DatabaseConnection.getConn();
-        try (
-                PreparedStatement preparedStatement = connection.prepareStatement(SEARCH_BY_MATRICULE)) {
-            preparedStatement.setString(1, matricule);
-            ResultSet resultSet = preparedStatement.executeQuery();
 
-            if (resultSet.next()) {
-                return createEmployeFromResultSet(resultSet);
-            }
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-
-        return null;
-    }
 
     private Employe createEmployeFromResultSet(ResultSet resultSet) throws SQLException {
         return new Employe(

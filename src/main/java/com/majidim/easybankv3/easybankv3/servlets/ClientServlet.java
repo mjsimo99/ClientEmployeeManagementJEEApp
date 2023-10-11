@@ -32,9 +32,10 @@ public class ClientServlet extends HttpServlet {
         }
 
         switch (action) {
-            case "list" -> listClients(request, response);
+            case "add" -> addClient(request, response);
             case "view" -> viewClient(request, response);
             case "edit" -> editClient(request, response);
+            case "update" -> updateClient(request, response);
             case "delete" -> deleteClient(request, response);
             case "search" -> searchClients(request, response);
 
@@ -44,7 +45,6 @@ public class ClientServlet extends HttpServlet {
     private void searchClients(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String query = request.getParameter("query");
 
-        // Call your service method to perform the search
         List<Client> searchResults = clientService.SearchByLastName(query);
 
         request.setAttribute("clients", searchResults);
@@ -54,7 +54,7 @@ public class ClientServlet extends HttpServlet {
     private void listClients(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         List<Client> clients = clientService.showList();
-        System.out.println("Number of clients retrieved: " + clients.size());
+
         request.setAttribute("clients", clients);
         request.getRequestDispatcher("/view/client/clientlist.jsp").forward(request, response);
 
@@ -109,17 +109,7 @@ public class ClientServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String action = request.getParameter("action");
-
-        if (action == null) {
-            action = "list";
-        }
-
-        switch (action) {
-            case "edit" -> updateClient(request, response);
-            case "add" -> addClient(request, response);
-            default -> listClients(request, response);
-        }
+        doGet(request,response);
     }
 
     private void updateClient(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

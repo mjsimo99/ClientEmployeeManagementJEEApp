@@ -14,7 +14,7 @@
 </c:if>
 <div class="container">
     <h1>Edit Client</h1>
-    <form action="${request.contextPath}/client?action=edit" method="post">
+    <form action="${request.contextPath}/client?action=update" method="post">
         <input type="hidden" name="action" value="edit">
         <label for="code">Client Code:</label>
         <input type="text" id="code" name="code" value="${client.code}" readonly><br>

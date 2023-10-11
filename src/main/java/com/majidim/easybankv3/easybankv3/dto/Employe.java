@@ -1,7 +1,17 @@
 package com.majidim.easybankv3.easybankv3.dto;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
+
 import java.time.LocalDate;
 import java.util.List;
+
+@Data
+@ToString
+@AllArgsConstructor
+@NoArgsConstructor
 
 public final class Employe extends Personne {
     private String matricule;
@@ -17,49 +27,4 @@ public final class Employe extends Personne {
         setEmailAdresse(emailAdresse);
     }
 
-
-
-
-
-
-
-
-
-    public String getMatricule() {
-        return matricule;
-    }
-
-    public void setMatricule(String matricule) {
-        this.matricule = matricule;
-    }
-
-    public LocalDate getDateRecrutement() {
-        return dateRecrutement;
-    }
-
-    public void setDateRecrutement(LocalDate dateRecrutement) {
-        this.dateRecrutement = dateRecrutement;
-    }
-
-    public String getEmailAdresse() {
-        return emailAdresse;
-    }
-
-    public void setEmailAdresse(String emailAdresse) {
-        this.emailAdresse = emailAdresse;
-    }
-
-    @Override
-    public String toString() {
-        return "Employe{" +
-                "matricule='" + getMatricule() + '\'' +
-                ", dateRecrutement=" + getDateRecrutement() +
-                ", emailAdresse='" + getEmailAdresse() + '\'' +
-                ", nom='" + getNom() + '\'' +
-                ", prenom='" + getPrenom() + '\'' +
-                ", dateN=" + getDateN() +
-                ", tel='" + getTel() + '\'' +
-                ", adress='" + getAdress() + '\'' +
-                '}';
-    }
 }

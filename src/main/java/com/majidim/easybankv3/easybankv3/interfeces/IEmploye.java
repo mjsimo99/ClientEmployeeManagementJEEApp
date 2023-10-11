@@ -11,7 +11,7 @@ public interface IEmploye extends IPersonne {
     List<Employe> SearchByMatricule(String matricule);
     boolean Delete(String marticule);
     List<Employe> ShowList();
-    List<Employe> SearchByDateR(LocalDate dateRecrutement);
+    List<Employe> SearchByEmail(String emailAdresse);
     Optional<Employe> Update(Employe employe);
 
 }

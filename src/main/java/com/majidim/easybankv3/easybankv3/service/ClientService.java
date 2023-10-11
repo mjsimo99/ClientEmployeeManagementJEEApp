@@ -33,8 +33,10 @@ public class ClientService {
     public Optional<Personne> add(Personne personne) {
         return clientImpl.Add(personne);
     }
+
     public List<Client> SearchByLastName(String lastName) {
         return clientImpl.SearchByLastName(lastName);
-    }    }
+    }
+}
 
 

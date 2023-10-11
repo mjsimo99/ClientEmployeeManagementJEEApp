@@ -22,6 +22,8 @@ public class ClientImpl implements IClient {
     private static final String SHOW_ALL_CLIENTS = "SELECT * FROM Clients";
     private static final String UPDATE_CLIENT = "UPDATE Clients SET nom=?, prenom=?, dateN=?, tel=?, adress=? WHERE code=?";
     private static final String ADD_CLIENT = "INSERT INTO Clients (code, nom, prenom, dateN, tel, adress) VALUES (?, ?, ?, ?, ?, ?)";
+    private static final String SEARCH_BY_LASTNAME = "SELECT * FROM Clients WHERE nom LIKE ?";
+
 
     @Override
     public List<Client> SearchByCode(String code) {
@@ -100,8 +102,7 @@ public class ClientImpl implements IClient {
     @Override
     public List<Client> SearchByLastName(String lastName) {
         Connection connection = DatabaseConnection.getConn();
-        String searchQuery = "SELECT * FROM Clients WHERE nom LIKE ?";
-        try (PreparedStatement preparedStatement = connection.prepareStatement(searchQuery)) {
+        try (PreparedStatement preparedStatement = connection.prepareStatement(SEARCH_BY_LASTNAME)) {
             preparedStatement.setString(1, "%" + lastName + "%");
             ResultSet resultSet = preparedStatement.executeQuery();
 
