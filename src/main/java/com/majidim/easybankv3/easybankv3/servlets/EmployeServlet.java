@@ -34,6 +34,7 @@ public class EmployeServlet extends HttpServlet {
             case "add" -> addEmploye(request,response);
             case "view" -> listEmploye(request,response);
             case "search" -> searchEmployes(request, response);
+            case "delete" -> deleteEmploye(request, response);
             default -> listEmploye(request,response);
         }
 
@@ -75,6 +76,20 @@ public class EmployeServlet extends HttpServlet {
         } else {
             response.sendRedirect("/employe?error=ajoute-failed");
         }
+    }
+    private void deleteEmploye(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        String matricule = request.getParameter("matricule");
+        if (matricule != null){
+            boolean deleted = employeService.Delete(matricule);
+            if (deleted){
+                response.sendRedirect(request.getContextPath() + "employe");
+            }else {
+                response.sendRedirect("/employe?error=delete-failed");
+            }
 
+        }else {
+            response.sendRedirect(request.getContextPath() + "/employe");
+
+        }
     }
-    }
+}

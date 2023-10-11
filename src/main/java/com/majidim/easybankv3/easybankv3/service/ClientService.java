@@ -14,23 +14,23 @@ public class ClientService {
         this.clientImpl =  clientImpl;
     }
 
-    public List<Client> searchByCode(String code) {
+    public List<Client> SearchByCode(String code) {
         return clientImpl.SearchByCode(code);
     }
 
-    public boolean delete(String code) {
+    public boolean Delete(String code) {
         return clientImpl.Delete(code);
     }
 
-    public List<Client> showList() {
+    public List<Client> Showlist() {
         return clientImpl.Showlist();
     }
 
-    public Optional<Client> update(Client client) {
+    public Optional<Client> Update(Client client) {
         return clientImpl.Update(client);
     }
 
-    public Optional<Personne> add(Personne personne) {
+    public Optional<Personne> Add(Personne personne) {
         return clientImpl.Add(personne);
     }
 

@@ -53,7 +53,7 @@ public class ClientServlet extends HttpServlet {
 
     private void listClients(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        List<Client> clients = clientService.showList();
+        List<Client> clients = clientService.Showlist();
 
         request.setAttribute("clients", clients);
         request.getRequestDispatcher("/view/client/clientlist.jsp").forward(request, response);
@@ -63,7 +63,7 @@ public class ClientServlet extends HttpServlet {
     private void viewClient(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String code = request.getParameter("code");
         if (code != null) {
-            List<Client> clients = clientService.searchByCode(code);
+            List<Client> clients = clientService.SearchByCode(code);
             if (!clients.isEmpty()) {
                 Client client = clients.get(0);
                 request.setAttribute("client", client);
@@ -79,7 +79,7 @@ public class ClientServlet extends HttpServlet {
     private void editClient(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String code = request.getParameter("code");
         if (code != null) {
-            List<Client> clients = clientService.searchByCode(code);
+            List<Client> clients = clientService.SearchByCode(code);
             if (!clients.isEmpty()) {
                 Client client = clients.get(0);
                 request.setAttribute("client", client);
@@ -95,7 +95,7 @@ public class ClientServlet extends HttpServlet {
     private void deleteClient(HttpServletRequest request, HttpServletResponse response) throws IOException {
         String code = request.getParameter("code");
         if (code != null) {
-            boolean deleted = clientService.delete(code);
+            boolean deleted = clientService.Delete(code);
             if (deleted) {
                 response.sendRedirect(request.getContextPath() + "/client");
             } else {
@@ -122,7 +122,7 @@ public class ClientServlet extends HttpServlet {
 
         Client client = new Client(code, nom, prenom, dateN, tel, adress);
 
-        Optional<Client> updatedClient = clientService.update(client);
+        Optional<Client> updatedClient = clientService.Update(client);
 
         if (updatedClient.isPresent()) {
             response.sendRedirect(request.getContextPath() + "/client?action=list");
@@ -141,7 +141,7 @@ public class ClientServlet extends HttpServlet {
 
         Client client = new Client(code, nom, prenom, dateN, tel, adress);
 
-        Optional<Personne> addedClient = clientService.add(client);
+        Optional<Personne> addedClient = clientService.Add(client);
 
         if (addedClient.isPresent()) {
             response.sendRedirect(request.getContextPath() + "/client?action=list");

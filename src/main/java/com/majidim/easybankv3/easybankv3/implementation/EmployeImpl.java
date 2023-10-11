@@ -99,20 +99,23 @@ public class EmployeImpl implements IEmploye {
 
     @Override
     public List<Employe> SearchByEmail(String emailAdresse) {
-        List<Employe> resultList = new ArrayList<>();
         Connection connection = DatabaseConnection.getConn();
-        try (
-                PreparedStatement preparedStatement = connection.prepareStatement(SEARCH_BY_EMAIL)) {
-            preparedStatement.setString(1, emailAdresse);
+        try (PreparedStatement preparedStatement = connection.prepareStatement(SEARCH_BY_EMAIL)) {
+            preparedStatement.setString(1,"%" + emailAdresse + "%");
             ResultSet resultSet = preparedStatement.executeQuery();
+
+            List<Employe> resultList = new ArrayList<>();
+
             while (resultSet.next()) {
                 Employe employe = createEmployeFromResultSet(resultSet);
                 resultList.add(employe);
             }
+            resultSet.close();
+            return resultList;
+
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-        return resultList;
     }
 
     @Override
