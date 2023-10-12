@@ -1,14 +1,25 @@
 
 
 <%@ include file="../includes/header.jsp" %>
+<div class="ctnr">
 
     <h1>List Employes</h1>
     <form class="form" method="GET" action="${pageContext.request.contextPath}/employe">
-        <input class="text" type="text" name="action" value="search" hidden>
-        <input type="text" name="query" placeholder="Search by Email" class="input-search">
-        <button type="submit">Search</button>
+        <div class="ctnr-search">
+            <div class="flex-input">
+                <input class="text" type="text" name="action" value="search" hidden>
+                <input type="text" name="query" placeholder="Search by Email" class="input-search">
+            </div>
+            <div class="flex-button">
+                <button class="search-button" type="submit">Search</button>
+            </div>
+        </div>
     </form>
-
+    <div class="add-c-e-button">
+        <form action="${pageContext.request.contextPath}/view/employe/addemploye.jsp">
+            <button class="button-add">Add EMploye</button>
+        </form>
+    </div>
     <table class="show-table">
         <thead>
         <tr>
@@ -36,16 +47,14 @@
                 <td>${employe.adress}</td>
                 <td>${employe.dateRecrutement}</td>
                 <td>
-                    <!-- Update Button -->
-                    <button class="button" onclick="showUpdateAlert('${employe.matricule}')">Update</button>
-                    <!-- Delete Button -->
-                    <button class="button" onclick="showDeleteAlert('${employe.matricule}')">Delete</button>
+                    <button class="button-update" onclick="showUpdateAlert('${employe.matricule}')">Update</button>
+                    <button class="button-delete" onclick="showDeleteAlert('${employe.matricule}')">Delete</button>
                 </td>
             </tr>
         </c:forEach>
         </tbody>
     </table>
-
+</div>
 <script>
     function showUpdateAlert(employeMatricule) {
         swal({

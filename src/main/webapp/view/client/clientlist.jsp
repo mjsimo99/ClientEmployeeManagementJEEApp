@@ -2,14 +2,26 @@
 <%@ include file="../includes/header.jsp" %>
 
 
+<div class="ctnr">
 
 <h1>List Clients</h1>
 <form method="GET" action="${pageContext.request.contextPath}/client">
-    <input type="text" name="action" value="search" hidden>
-    <input type="text" name="query" placeholder="Search by Last Name" class="input-search">
-    <button type="submit">Search</button>
+    <div class="ctnr-search">
+        <div class="flex-input">
+            <input type="text" name="action" value="search" hidden>
+            <input type="text" name="query" placeholder="Search by Last Name" class="input-search">
+        </div>
+        <div class="flex-button">
+            <button class="search-button" type="submit">Search</button>
+        </div>
+    </div>
 </form>
+<div class="add-c-e-button">
+    <form action="${pageContext.request.contextPath}/view/client/addclient.jsp">
+        <button class="button-add">Add Client</button>
+    </form>
 
+</div>
 <table class="show-table">
     <thead>
     <tr>
@@ -32,14 +44,14 @@
             <td>${client.tel}</td>
             <td>${client.adress}</td>
             <td>
-                <button class="update-button" onclick="showUpdateAlert('${client.code}')">Update</button>
-                <button class="delete-button" onclick="showDeleteAlert('${client.code}')">Delete</button>
+                <button class="button-update" onclick="showUpdateAlert('${client.code}')">Update</button>
+                <button class="button-delete" onclick="showDeleteAlert('${client.code}')">Delete</button>
             </td>
         </tr>
     </c:forEach>
     </tbody>
 </table>
-
+</div>
 <script>
     function showUpdateAlert(clientCode) {
         swal({

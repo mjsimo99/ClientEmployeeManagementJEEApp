@@ -37,16 +37,7 @@ label {
     display: block;
     margin-bottom: 5px;
 }
-/*input[type="email"],
-input[type="text"],
-input[type="date"] {
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 15px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-}
-*/
+
 .form-inputs{
     width: 100%;
     padding: 10px;
@@ -233,9 +224,11 @@ button.submit-button:hover::before {
 
 /* Table styles */
 .show-table {
-    width: 100%;
+    width: 90%;
     border-collapse: collapse;
     text-align: left;
+    margin-right: auto;
+    margin-left: auto;
 }
 
 .show-table th,
@@ -253,24 +246,149 @@ button.submit-button:hover::before {
     background-color: #f2f2f2;
 }
 
-/* Button styles */
-.update-button,
-.delete-button {
-    background-color: #007bff;
-    color: #fff;
-    border: none;
-    padding: 6px 10px;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-    margin-right: 5px;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.add-c-e-button {
+    text-align: right;
+    margin-bottom: 10px;
+    width: 90%;
+
 }
 
-.update-button:hover,
-.delete-button:hover {
+
+
+.button-link:hover {
     background-color: #0056b3;
 }
 
+.ctnr{
+    margin-top: 5%;
+    margin-bottom: 6%;
+}
+.ctnr-search{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+
+
+button.search-button {
+    padding: 9px 25px;
+    border: unset;
+    border-radius: 15px;
+    color: #e8e8e8;
+    z-index: 1;
+    background: #212121;
+    position: relative;
+    font-weight: 1000;
+    font-size: 15px;
+    -webkit-box-shadow: 4px 8px 19px -3px rgba(0,0,0,0.27);
+    box-shadow: 4px 8px 19px -3px rgba(0,0,0,0.27);
+    transition: all 250ms;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+button.search-button::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 0;
+    border-radius: 15px;
+    background-color: #e8e8e8;
+    z-index: -1;
+    -webkit-box-shadow: 4px 8px 19px -3px rgba(0,0,0,0.27);
+    box-shadow: 4px 8px 19px -3px rgba(0,0,0,0.27);
+    transition: all 250ms;
+}
+
+button.search-button:hover {
+    color: #212121;
+}
+
+button.search-button:hover::before {
+    width: 100%;
+}
+
+.flex-input{
+    margin-right: 5px;
+}
+
+
+.button-add {
+    padding: 9px 25px;
+    border: unset;
+    border-radius: 15px;
+    color: #e8e8e8;
+    z-index: 1;
+    background: #008000;
+    position: relative;
+    font-weight: 1000;
+    font-size: 15px;
+    -webkit-box-shadow: 4px 8px 19px -3px rgba(0,0,0,0.27);
+    box-shadow: 4px 8px 19px -3px rgba(0,0,0,0.27);
+    transition: all 250ms;
+    overflow: hidden;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.button-add::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 0;
+    border-radius: 15px;
+    background-color: #006400;
+    z-index: -1;
+    -webkit-box-shadow: 4px 8px 19px -3px rgba(0,0,0,0.27);
+    box-shadow: 4px 8px 19px -3px rgba(0,0,0,0.27);
+    transition: all 250ms;
+}
+
+.button-add:hover {
+    color: #e8e8e8;
+}
+
+.button-add:hover::before {
+    width: 100%;
+}
 
 
 
@@ -280,6 +398,46 @@ button.submit-button:hover::before {
 
 
 
+.button-delete {
+    padding: 9px 25px;
+    border: unset;
+    border-radius: 15px;
+    color: #e8e8e8;
+    z-index: 1;
+    background: #FF0000;
+    position: relative;
+    font-weight: 1000;
+    font-size: 15px;
+    -webkit-box-shadow: 4px 8px 19px -3px rgba(0,0,0,0.27);
+    box-shadow: 4px 8px 19px -3px rgba(0,0,0,0.27);
+    transition: all 250ms;
+    overflow: hidden;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.button-delete::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 0;
+    border-radius: 15px;
+    background-color: #CC0000;
+    z-index: -1;
+    -webkit-box-shadow: 4px 8px 19px -3px rgba(0,0,0,0.27);
+    box-shadow: 4px 8px 19px -3px rgba(0,0,0,0.27);
+    transition: all 250ms;
+}
+
+.button-delete:hover {
+    color: #e8e8e8;
+}
+
+.button-delete:hover::before {
+    width: 100%;
+}
 
 
 
@@ -287,16 +445,46 @@ button.submit-button:hover::before {
 
 
 
+.button-update {
+    padding: 9px 25px;
+    border: unset;
+    border-radius: 15px;
+    color: #e8e8e8;
+    z-index: 1;
+    background: #007bff;
+    position: relative;
+    font-weight: 1000;
+    font-size: 15px;
+    -webkit-box-shadow: 4px 8px 19px -3px rgba(0,0,0,0.27);
+    box-shadow: 4px 8px 19px -3px rgba(0,0,0,0.27);
+    transition: all 250ms;
+    overflow: hidden;
+    cursor: pointer;
+    text-decoration: none;
+}
 
+.button-update::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 0;
+    border-radius: 15px;
+    background-color: #0056b3;
+    z-index: -1;
+    -webkit-box-shadow: 4px 8px 19px -3px rgba(0,0,0,0.27);
+    box-shadow: 4px 8px 19px -3px rgba(0,0,0,0.27);
+    transition: all 250ms;
+}
 
+.button-update:hover {
+    color: #e8e8e8;
+}
 
-
-
-
-
-
-
-
+.button-update:hover::before {
+    width: 100%;
+}
 
 
 

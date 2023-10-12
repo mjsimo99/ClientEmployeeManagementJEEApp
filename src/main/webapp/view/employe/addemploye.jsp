@@ -18,6 +18,7 @@
 </c:if>
 <div class="container1">
     <h1>Add Employe</h1>
+
     <form action="${request.contextPath}/employe?action=add" method="post">
         <input class="form-inputs" type="hidden" name="action" value="add">
         <label for="matricule">Employe Matricule:</label>
