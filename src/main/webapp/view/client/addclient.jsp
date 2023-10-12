@@ -7,6 +7,13 @@
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/styles.css">
 </head>
 <body>
+
+
+<%@ include file="../includes/header.jsp" %>
+
+
+
+
 <c:if test="${not empty requestScope.error}">
     <div class="error-message">
         Error: ${requestScope.error}
@@ -33,5 +40,7 @@
 
     </form>
 </div>
+<%@ include file="../includes/footer.jsp" %>
+
 </body>
 </html>
