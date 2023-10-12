@@ -19,12 +19,12 @@
     <div class="container2">
         <div class="navbar-brand">
                 <span class="navbar-logo">
-                    <a href="https://mobiri.se">
+                    <a href="../../index.jsp">
                         <img src="${pageContext.request.contextPath}/resources/images/E-removebg-preview.png" style="height: 4.3rem;">
                     </a>
                 </span>
             <span class="navbar-caption-wrap">
-                    <a class="text-logo" href="https://mobiri.se">EasyBank</a>
+                    <a class="text-logo" href="../../index.jsp">EasyBank</a>
                 </span>
         </div>
         <button class="navbar-toggler">
@@ -48,7 +48,7 @@
 
         </ul>
         <div class="navbar-buttons mbr-section-btn right-phase">
-            <a class="text-logo" href="https://mobiri.se">Home Page</a>
+            <a class="text-logo" href="https://www.linkedin.com/in/mohamed-amine-majidi-399035252/">Contact Us</a>
         </div>
     </div>
 </nav>
