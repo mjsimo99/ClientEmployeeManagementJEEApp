@@ -25,8 +25,8 @@
         <input class="form-inputs" type="text" id="matricule" name="matricule" required><br>
         <label for="dateRecrutement">Date Recruitment:</label>
         <input class="form-inputs" type="date" id="dateRecrutement" name="dateRecrutement" required><br>
-        <label for="emailAdresse">Email:</label>
-        <input class="form-inputs" type="email" id="emailAdresse" name="emailAdresse" required><br>
+        <label for="emailadresse">Email:</label>
+        <input class="form-inputs" type="email" id="emailadresse" name="emailadresse" required>
         <label for="nom">Last Name:</label>
         <input class="form-inputs" type="text" id="nom" name="nom" required><br>
         <label for="prenom">First Name:</label>
@@ -42,6 +42,29 @@
     </form>
 </div>
 <%@ include file="../includes/footer.jsp" %>
-
+<% String successMessage = (String) request.getAttribute("successMessage"); %>
+<% if (successMessage != null) { %>
+<script>
+    swal({
+        title: "Success!",
+        text: "<%= successMessage %>",
+        icon: "success",
+    }).then(function (confirmed) {
+        if (confirmed) {
+            window.location.href = "${pageContext.request.contextPath}/employe?action=list";
+        }
+    });
+</script>
+<% } %>
+<% String errorMessage = (String) request.getAttribute("errorMessage"); %>
+<% if (errorMessage != null) { %>
+<script>
+    swal({
+        title: "Error!",
+        text: "<%= errorMessage %>",
+        icon: "error",
+    });
+</script>
+<% } %>
 </body>
 </html>

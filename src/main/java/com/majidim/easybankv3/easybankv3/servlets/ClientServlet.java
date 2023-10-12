@@ -59,23 +59,6 @@ public class ClientServlet extends HttpServlet {
 
     }
 
-   /* private void viewClient(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String code = request.getParameter("code");
-        if (code != null) {
-            List<Client> clients = clientService.SearchByCode(code);
-            if (!clients.isEmpty()) {
-                Client client = clients.get(0);
-                request.setAttribute("client", client);
-                request.getRequestDispatcher("/client-view.jsp").forward(request, response);
-            } else {
-                response.sendRedirect(request.getContextPath() + "/client");
-            }
-        } else {
-            response.sendRedirect(request.getContextPath() + "/client");
-        }
-    }
-
-    */
 
     private void editClient(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String code = request.getParameter("code");
@@ -98,15 +81,15 @@ public class ClientServlet extends HttpServlet {
         if (code != null) {
             boolean deleted = clientService.Delete(code);
             if (deleted) {
-                response.sendRedirect(request.getContextPath() + "/client");
+                response.sendRedirect(request.getContextPath() + "/client?success=delete-success");
             } else {
                 response.sendRedirect("/client?error=delete-failed");
-
             }
         } else {
             response.sendRedirect(request.getContextPath() + "/client");
         }
     }
+
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -126,11 +109,15 @@ public class ClientServlet extends HttpServlet {
         Optional<Client> updatedClient = clientService.Update(client);
 
         if (updatedClient.isPresent()) {
-            response.sendRedirect(request.getContextPath() + "/client?action=list");
+            // Display SweetAlert
+            request.setAttribute("successMessage", "Client updated successfully!");
+            request.getRequestDispatcher("/view/client/clientedit.jsp").forward(request, response);
         } else {
             response.sendRedirect("/client?error=update-failed");
         }
     }
+
+
 
     private void addClient(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String code = request.getParameter("code");
@@ -142,14 +129,18 @@ public class ClientServlet extends HttpServlet {
 
         Client client = new Client(code, nom, prenom, dateN, tel, adress);
 
-        Optional<Personne> addedClient = clientService.Add(client);
-
-        if (addedClient.isPresent()) {
-            response.sendRedirect(request.getContextPath() + "/client?action=list");
-        } else {
-            response.sendRedirect("/client?error=ajoute-failed");
-
+        try {
+            Optional<Personne> addedClient = clientService.Add(client);
+            if (addedClient.isPresent()) {
+                request.setAttribute("successMessage", "Client added successfully!");
+            } else {
+                request.setAttribute("errorMessage", "Failed to add client");
+            }
+        } catch (Exception e) {
+            request.setAttribute("errorMessage", "Client with the same code already exists");
         }
+
+        request.getRequestDispatcher("/view/client/addclient.jsp").forward(request, response);
     }
 
 

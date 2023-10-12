@@ -17,7 +17,7 @@ public class EmployeImpl implements IEmploye {
 
 
 
-    private static final String ADD_EMPLOYE = "INSERT INTO Employes (matricule, dateRecrutement, emailAdresse, nom, prenom, dateN, tel, adress) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+    private static final String ADD_EMPLOYE = "INSERT INTO Employes (matricule, dateRecrutement, emailadresse, nom, prenom, dateN, tel, adress) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
     private static final String SEARCH_BY_MATRICULE = "SELECT * FROM Employes WHERE matricule=?";
     private static final String DELETE_EMPLOYE = "DELETE FROM Employes WHERE matricule=?";
     private static final String SHOW_ALL_EMPLOYEES = "SELECT * FROM Employes";

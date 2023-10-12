@@ -88,7 +88,20 @@
             });
     }
 </script>
-
+<% String successMessage = request.getParameter("success"); %>
+<% if (successMessage != null && successMessage.equals("delete-success")) { %>
+<script>
+    swal({
+        title: "Success!",
+        text: "Client deleted successfully!",
+        icon: "success",
+    }).then(function (confirmed) {
+        if (confirmed) {
+            window.location.href = "${pageContext.request.contextPath}/employe";
+        }
+    });
+</script>
+<% } %>
 <%@ include file="../includes/footer.jsp" %>
 
 </body>

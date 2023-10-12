@@ -59,7 +59,7 @@ public class EmployeServlet extends HttpServlet {
     }
 
 
-    private void addEmploye(HttpServletRequest request,HttpServletResponse response)throws ServletException,IOException{
+    private void addEmploye(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String matricule = request.getParameter("matricule");
         LocalDate dateRecrutement = LocalDate.parse(request.getParameter("dateRecrutement"));
         String emailAdresse = request.getParameter("emailadresse");
@@ -69,20 +69,29 @@ public class EmployeServlet extends HttpServlet {
         String tel = request.getParameter("tel");
         String adress = request.getParameter("adress");
 
-        Employe employe = new Employe(nom,prenom,dateN,tel,adress, matricule, dateRecrutement, emailAdresse);
-        Optional<Personne> addEmploye = employeService.add(employe);
-        if (addEmploye.isPresent()){
-            response.sendRedirect(request.getContextPath() + "/employe?action=list");
-        } else {
-            response.sendRedirect("/employe?error=ajoute-failed");
+        Employe employe = new Employe(nom, prenom, dateN, tel, adress, matricule, dateRecrutement, emailAdresse);
+
+        try {
+            Optional<Personne> addedEmploye = employeService.add(employe);
+            if (addedEmploye.isPresent()) {
+                request.setAttribute("successMessage", "Employee added successfully!");
+            } else {
+                request.setAttribute("errorMessage", "Failed to add employee");
+            }
+        } catch (Exception e) {
+            request.setAttribute("errorMessage", "Employee with the same matricule already exists");
         }
+
+        request.getRequestDispatcher("/view/employe/addemploye.jsp").forward(request, response);
     }
+
+
     private void deleteEmploye(HttpServletRequest request, HttpServletResponse response) throws IOException {
         String matricule = request.getParameter("matricule");
         if (matricule != null){
             boolean deleted = employeService.Delete(matricule);
             if (deleted){
-                response.sendRedirect(request.getContextPath() + "employe");
+                response.sendRedirect(request.getContextPath() + "/employe?success=delete-success");
             }else {
                 response.sendRedirect("/employe?error=delete-failed");
             }
@@ -118,13 +127,16 @@ public class EmployeServlet extends HttpServlet {
         String tel = request.getParameter("tel");
         String adress = request.getParameter("adress");
 
-        Employe employe = new Employe(nom,prenom,dateN,tel,adress, matricule, dateRecrutement, emailAdresse);
+        Employe employe = new Employe(nom, prenom, dateN, tel, adress, matricule, dateRecrutement, emailAdresse);
 
-        Optional<Employe> addEmploye = employeService.Update(employe);
-        if (addEmploye.isPresent()){
-            response.sendRedirect(request.getContextPath() + "/employe?action=list");
-        }else {
-            response.sendRedirect("/employe?error=ajoute-failed");
+        Optional<Employe> updatedEmploye = employeService.Update(employe);
+
+        if (updatedEmploye.isPresent()) {
+            request.setAttribute("successMessage", "Employee updated successfully!");
+            request.getRequestDispatcher("/view/employe/employeedit.jsp").forward(request, response);
+        } else {
+            response.sendRedirect("/employe?error=update-failed");
         }
     }
+
     }

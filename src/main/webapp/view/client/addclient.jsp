@@ -1,22 +1,15 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-
-
-
-
+<html>
+<head>
+    <title>Add Client</title>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+</head>
+<body>
 
 
 
 <%@ include file="../includes/header.jsp" %>
 
-
-
-
-<c:if test="${not empty requestScope.error}">
-    <div class="error-message">
-        Error: ${requestScope.error}
-    </div>
-</c:if>
 <div class="container">
     <h1>Add Client</h1>
     <form action="${request.contextPath}/client?action=add" method="post">
@@ -33,12 +26,37 @@
         <input class="form-inputs" type="text" id="tel" name="tel" required><br>
         <label for="adress">Address:</label>
         <input class="form-inputs" type="text" id="adress" name="adress" required><br>
-        <%--  <input class="submit" type="submit" value="Add Client">--%>
         <button type="submit" class="submit-button">Add Client</button>
-
     </form>
 </div>
+
 <%@ include file="../includes/footer.jsp" %>
+
+
+<% String successMessage = (String) request.getAttribute("successMessage"); %>
+<% if (successMessage != null) { %>
+<script>
+    swal({
+        title: "Success!",
+        text: "<%= successMessage %>",
+        icon: "success",
+    }).then(function (confirmed) {
+        if (confirmed) {
+            window.location.href = "${pageContext.request.contextPath}/client?action=list";
+        }
+    });
+</script>
+<% } %>
+<% String errorMessage = (String) request.getAttribute("errorMessage"); %>
+<% if (errorMessage != null) { %>
+<script>
+    swal({
+        title: "Error!",
+        text: "<%= errorMessage %>",
+        icon: "error",
+    });
+</script>
+<% } %>
 
 </body>
 </html>

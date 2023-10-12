@@ -30,6 +30,20 @@
 </div>
 
 <%@ include file="../includes/footer.jsp" %>
+<% String successMessage = (String) request.getAttribute("successMessage"); %>
+<% if (successMessage != null) { %>
+<script>
+    swal({
+        title: "Success!",
+        text: "<%= successMessage %>",
+        icon: "success",
+    }).then(function (confirmed) {
+        if (confirmed) {
+            window.location.href = "${pageContext.request.contextPath}/client?action=list";
+        }
+    });
+</script>
+<% } %>
 
 </body>
 </html>
