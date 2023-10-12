@@ -28,7 +28,9 @@
         <input type="text" id="tel" name="tel" required><br>
         <label for="adress">Address:</label>
         <input type="text" id="adress" name="adress" required><br>
-        <input type="submit" value="Add Client">
+        <%--  <input class="submit" type="submit" value="Add Client">--%>
+        <button type="submit" class="submit-button">Add Client</button>
+
     </form>
 </div>
 </body>

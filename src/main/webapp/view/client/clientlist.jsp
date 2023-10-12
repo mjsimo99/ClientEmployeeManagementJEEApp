@@ -4,52 +4,47 @@
 <head>
     <meta charset="UTF-8">
     <title>List Clients</title>
-    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/styles.css">
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/list.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
 </head>
 <body>
-<div class="container">
-    <h1>List Clients</h1>
-    <form method="GET" action="${pageContext.request.contextPath}/client">
-        <input type="text" name="action" value="search" hidden>
-        <input type="text" name="query" placeholder="Search by Last Name">
-        <button type="submit">Search</button>
-    </form>
+<h1>List Clients</h1>
+<form method="GET" action="${pageContext.request.contextPath}/client">
+    <input type="text" name="action" value="search" hidden>
+    <input type="text" name="query" placeholder="Search by Last Name" class="input-search">
+    <button type="submit">Search</button>
+</form>
 
-    <table>
-        <thead>
+<table class="client-table">
+    <thead>
+    <tr>
+        <th>Client Code</th>
+        <th>Last Name</th>
+        <th>First Name</th>
+        <th>Date of Birth</th>
+        <th>Phone</th>
+        <th>Address</th>
+        <th>Action</th>
+    </tr>
+    </thead>
+    <tbody>
+    <c:forEach items="${clients}" var="client">
         <tr>
-            <th>Client Code</th>
-            <th>Last Name</th>
-            <th>First Name</th>
-            <th>Date of Birth</th>
-            <th>Phone</th>
-            <th>Address</th>
-            <th>Action</th>
+            <td>${client.code}</td>
+            <td>${client.nom}</td>
+            <td>${client.prenom}</td>
+            <td>${client.dateN}</td>
+            <td>${client.tel}</td>
+            <td>${client.adress}</td>
+            <td>
+                <button class="update-button" onclick="showUpdateAlert('${client.code}')">Update</button>
+                <button class="delete-button" onclick="showDeleteAlert('${client.code}')">Delete</button>
+            </td>
         </tr>
-        </thead>
-        <tbody>
-
-        <c:forEach items="${clients}" var="client">
-            <tr>
-                <td>${client.code}</td>
-                <td>${client.nom}</td>
-                <td>${client.prenom}</td>
-                <td>${client.dateN}</td>
-                <td>${client.tel}</td>
-                <td>${client.adress}</td>
-                <td>
-                    <!-- Update Button -->
-                    <button onclick="showUpdateAlert('${client.code}')">Update</button>
-                    <!-- Delete Button -->
-                    <button onclick="showDeleteAlert('${client.code}')">Delete</button>
-                </td>
-            </tr>
-        </c:forEach>
-        </tbody>
-    </table>
-</div>
+    </c:forEach>
+    </tbody>
+</table>
 
 <script>
     function showUpdateAlert(clientCode) {

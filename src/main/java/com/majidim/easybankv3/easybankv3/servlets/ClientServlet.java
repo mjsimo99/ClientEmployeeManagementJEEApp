@@ -33,7 +33,7 @@ public class ClientServlet extends HttpServlet {
 
         switch (action) {
             case "add" -> addClient(request, response);
-            case "view" -> viewClient(request, response);
+            //case "view" -> viewClient(request, response);
             case "edit" -> editClient(request, response);
             case "update" -> updateClient(request, response);
             case "delete" -> deleteClient(request, response);
@@ -44,7 +44,6 @@ public class ClientServlet extends HttpServlet {
     }
     private void searchClients(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String query = request.getParameter("query");
-
         List<Client> searchResults = clientService.SearchByLastName(query);
 
         request.setAttribute("clients", searchResults);
@@ -60,7 +59,7 @@ public class ClientServlet extends HttpServlet {
 
     }
 
-    private void viewClient(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+   /* private void viewClient(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String code = request.getParameter("code");
         if (code != null) {
             List<Client> clients = clientService.SearchByCode(code);
@@ -75,6 +74,8 @@ public class ClientServlet extends HttpServlet {
             response.sendRedirect(request.getContextPath() + "/client");
         }
     }
+
+    */
 
     private void editClient(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String code = request.getParameter("code");

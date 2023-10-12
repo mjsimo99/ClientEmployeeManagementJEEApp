@@ -22,7 +22,6 @@
         <input type="date" id="dateRecrutement" name="dateRecrutement" required><br>
         <label for="emailAdresse">Email:</label>
         <input type="email" id="emailAdresse" name="emailAdresse" required><br>
-
         <label for="nom">Last Name:</label>
         <input type="text" id="nom" name="nom" required><br>
         <label for="prenom">First Name:</label>
@@ -33,7 +32,8 @@
         <input type="text" id="tel" name="tel" required><br>
         <label for="adress">Address:</label>
         <input type="text" id="adress" name="adress" required><br>
-        <input type="submit" value="Add Employe">
+        <button type="submit" class="submit-button">Add Employe</button>
+
     </form>
 </div>
 </body>
