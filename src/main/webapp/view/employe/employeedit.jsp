@@ -7,6 +7,11 @@
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/styles.css">
 </head>
 <body>
+
+
+<%@ include file="../includes/header.jsp" %>
+
+
 <c:if test="${not empty requestScope.error}">
     <div class="error-message">
         Error: ${requestScope.error}
@@ -15,26 +20,31 @@
 <div class="container">
     <h1>Edit Employe</h1>
     <form action="${request.contextPath}/employe?action=update" method="post">
-        <input type="hidden" name="action" value="edit">
+        <input class="form-inputs" type="hidden" name="action" value="edit">
         <label for="matricule">Employe Matricule:</label>
-        <input type="text" id="matricule" name="matricule" value="${employe.matricule}" readonly><br>
+        <input class="form-inputs" type="text" id="matricule" name="matricule" value="${employe.matricule}" readonly><br>
         <label for="nom">Last Name:</label>
-        <input type="text" id="nom" name="nom" value="${employe.nom}" required><br>
+        <input class="form-inputs" type="text" id="nom" name="nom" value="${employe.nom}" required><br>
         <label for="prenom">First Name:</label>
-        <input type="text" id="prenom" name="prenom" value="${employe.prenom}" required><br>
+        <input class="form-inputs" type="text" id="prenom" name="prenom" value="${employe.prenom}" required><br>
         <label for="emailadresse">Email:</label>
-        <input type="email" id="emailadresse" name="emailadresse" value="${employe.emailAdresse}" required>
+        <input class="form-inputs" type="email" id="emailadresse" name="emailadresse" value="${employe.emailAdresse}" required>
         <label for="dateN">Date of Birth (YYYY-MM-DD):</label>
-        <input type="date" id="dateN" name="dateN" value="${employe.dateN}" required><br>
+        <input class="form-inputs" type="date" id="dateN" name="dateN" value="${employe.dateN}" required><br>
         <label for="tel">Phone:</label>
-        <input type="text" id="tel" name="tel" value="${employe.tel}" required><br>
+        <input class="form-inputs" type="text" id="tel" name="tel" value="${employe.tel}" required><br>
         <label for="daterecrutement">date Recrutement</label>
-        <input type="date" id="dateRecrutement" name="dateRecrutement" value="${employe.dateRecrutement}" required><br>
+        <input class="form-inputs" type="date" id="dateRecrutement" name="dateRecrutement" value="${employe.dateRecrutement}" required><br>
         <label for="adress">Address:</label>
-        <input type="text" id="adress" name="adress" value="${employe.adress}" required><br>
-        <input type="submit" value="Update Employe">
+        <input class="form-inputs" type="text" id="adress" name="adress" value="${employe.adress}" required><br>
+        <button type="submit" class="submit-button">Update Employe</button>
+
 
     </form>
 </div>
+
+<%@ include file="../includes/footer.jsp" %>
+
+
 </body>
 </html>

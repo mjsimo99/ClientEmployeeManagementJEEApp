@@ -1,56 +1,50 @@
 
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<html>
-<head>
-    <meta charset="UTF-8">
-    <title>List Employes</title>
-    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/styles.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
-</head>
-<body>
-<div class="container">
+
+<%@ include file="../includes/header.jsp" %>
+
     <h1>List Employes</h1>
-    <form method="GET" action="${pageContext.request.contextPath}/employe">
-        <input type="text" name="action" value="search" hidden>
-        <input type="text" name="query" placeholder="Search by Email">
+    <form class="form" method="GET" action="${pageContext.request.contextPath}/employe">
+        <input class="text" type="text" name="action" value="search" hidden>
+        <input type="text" name="query" placeholder="Search by Email" class="input-search">
         <button type="submit">Search</button>
     </form>
 
-    <table>
+    <table class="show-table">
         <thead>
         <tr>
             <th>Employe MAtricule</th>
             <th>Last Name</th>
             <th>First Name</th>
+            <th>Email:</th>
             <th>Date of Birth</th>
             <th>Phone</th>
             <th>Address</th>
+            <th>Date Recruitment:</th>
+
             <th>Action</th>
         </tr>
         </thead>
         <tbody>
-
         <c:forEach items="${employes}" var="employe">
             <tr>
                 <td>${employe.matricule}</td>
                 <td>${employe.nom}</td>
                 <td>${employe.prenom}</td>
+                <td>${employe.emailAdresse}</td>
                 <td>${employe.dateN}</td>
                 <td>${employe.tel}</td>
                 <td>${employe.adress}</td>
+                <td>${employe.dateRecrutement}</td>
                 <td>
                     <!-- Update Button -->
-                    <button onclick="showUpdateAlert('${employe.matricule}')">Update</button>
+                    <button class="button" onclick="showUpdateAlert('${employe.matricule}')">Update</button>
                     <!-- Delete Button -->
-                    <button onclick="showDeleteAlert('${employe.matricule}')">Delete</button>
+                    <button class="button" onclick="showDeleteAlert('${employe.matricule}')">Delete</button>
                 </td>
             </tr>
         </c:forEach>
         </tbody>
     </table>
-</div>
 
 <script>
     function showUpdateAlert(employeMatricule) {
@@ -85,5 +79,8 @@
             });
     }
 </script>
+
+<%@ include file="../includes/footer.jsp" %>
+
 </body>
 </html>

@@ -16,29 +16,31 @@
         Error: ${requestScope.error}
     </div>
 </c:if>
-<div class="container">
+<div class="container1">
     <h1>Add Employe</h1>
     <form action="${request.contextPath}/employe?action=add" method="post">
-        <input type="hidden" name="action" value="add">
-        <label for="matricule">Employe MAtricule:</label>
-        <input type="text" id="matricule" name="matricule" required><br>
+        <input class="form-inputs" type="hidden" name="action" value="add">
+        <label for="matricule">Employe Matricule:</label>
+        <input class="form-inputs" type="text" id="matricule" name="matricule" required><br>
         <label for="dateRecrutement">Date Recruitment:</label>
-        <input type="date" id="dateRecrutement" name="dateRecrutement" required><br>
+        <input class="form-inputs" type="date" id="dateRecrutement" name="dateRecrutement" required><br>
         <label for="emailAdresse">Email:</label>
-        <input type="email" id="emailAdresse" name="emailAdresse" required><br>
+        <input class="form-inputs" type="email" id="emailAdresse" name="emailAdresse" required><br>
         <label for="nom">Last Name:</label>
-        <input type="text" id="nom" name="nom" required><br>
+        <input class="form-inputs" type="text" id="nom" name="nom" required><br>
         <label for="prenom">First Name:</label>
-        <input type="text" id="prenom" name="prenom" required><br>
+        <input class="form-inputs" type="text" id="prenom" name="prenom" required><br>
         <label for="dateN">Date of Birth :</label>
-        <input type="date" id="dateN" name="dateN" required><br>
+        <input class="form-inputs" type="date" id="dateN" name="dateN" required><br>
         <label for="tel">Phone:</label>
-        <input type="text" id="tel" name="tel" required><br>
+        <input class="form-inputs" type="text" id="tel" name="tel" required><br>
         <label for="adress">Address:</label>
-        <input type="text" id="adress" name="adress" required><br>
+        <input class="form-inputs" type="text" id="adress" name="adress" required><br>
         <button type="submit" class="submit-button">Add Employe</button>
 
     </form>
 </div>
+<%@ include file="../includes/footer.jsp" %>
+
 </body>
 </html>

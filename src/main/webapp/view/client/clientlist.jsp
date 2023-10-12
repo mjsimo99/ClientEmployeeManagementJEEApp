@@ -1,14 +1,8 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<html>
-<head>
-    <meta charset="UTF-8">
-    <title>List Clients</title>
-    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/list.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
-</head>
-<body>
+
+<%@ include file="../includes/header.jsp" %>
+
+
+
 <h1>List Clients</h1>
 <form method="GET" action="${pageContext.request.contextPath}/client">
     <input type="text" name="action" value="search" hidden>
@@ -16,7 +10,7 @@
     <button type="submit">Search</button>
 </form>
 
-<table class="client-table">
+<table class="show-table">
     <thead>
     <tr>
         <th>Client Code</th>
@@ -79,5 +73,9 @@
             });
     }
 </script>
+
+<%@ include file="../includes/footer.jsp" %>
+
+
 </body>
 </html>

@@ -111,7 +111,7 @@ public class EmployeServlet extends HttpServlet {
     private void updateEmploye(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String matricule = request.getParameter("matricule");
         LocalDate dateRecrutement = LocalDate.parse(request.getParameter("dateRecrutement"));
-        String emailAdresse = request.getParameter("emailAdresse");
+        String emailAdresse = request.getParameter("emailadresse");
         String nom = request.getParameter("nom");
         String prenom = request.getParameter("prenom");
         LocalDate dateN = LocalDate.parse(request.getParameter("dateN"));

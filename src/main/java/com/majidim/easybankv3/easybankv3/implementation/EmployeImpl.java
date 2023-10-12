@@ -23,7 +23,7 @@ public class EmployeImpl implements IEmploye {
     private static final String SHOW_ALL_EMPLOYEES = "SELECT * FROM Employes";
     private static final String SEARCH_BY_EMAIL = "SELECT * FROM Employes WHERE emailAdresse LIKE ?";
 
-    private static final String UPDATE_EMPLOYE = "UPDATE Employes SET dateRecrutement=?, emailAdresse=?, nom=?, prenom=?, dateN=?, tel=?, adress=? WHERE matricule=?";
+    private static final String UPDATE_EMPLOYE = "UPDATE Employes SET dateRecrutement=?, emailadresse=?, nom=?, prenom=?, dateN=?, tel=?, adress=? WHERE matricule=?";
 
     @Override
     public Optional<Personne> Add(Personne personne) {
