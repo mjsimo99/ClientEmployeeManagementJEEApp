@@ -37,7 +37,7 @@
         </button>
         <ul class="navbar-nav">
             <li class="nav-item">
-                <a class="nav-link link text-black display-4" href="#">Home</a>
+                <a class="nav-link link text-black display-4" href="../../index.jsp">Home</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link link text-black display-4" href="${pageContext.request.contextPath}../../client">Clients</a>

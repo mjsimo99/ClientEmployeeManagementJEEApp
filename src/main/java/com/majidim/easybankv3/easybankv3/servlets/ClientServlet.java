@@ -109,7 +109,6 @@ public class ClientServlet extends HttpServlet {
         Optional<Client> updatedClient = clientService.Update(client);
 
         if (updatedClient.isPresent()) {
-            // Display SweetAlert
             request.setAttribute("successMessage", "Client updated successfully!");
             request.getRequestDispatcher("/view/client/clientedit.jsp").forward(request, response);
         } else {
